@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">QMobility</string>
+
+    <string name="tab_products">Products</string>
+    <string name="tab_favorites">Favorites</string>
+
+    <string name="search_placeholder">Search for an item</string>
+    <string name="products_empty">No products found</string>
+    <string name="products_empty_query">No products found for \"%1$s\"</string>
+
+    <string name="favorites_empty_title">No favorites yet</string>
+    <string name="favorites_empty_body">Tap the heart on a product to save it here.</string>
+
+    <string name="details_title">Product</string>
+    <string name="details_favorite_added">Saved to favorites</string>
+    <string name="details_favorite_removed">Removed from favorites</string>
+    <string name="details_stock">Stock</string>
+    <string name="details_availability">Availability</string>
+    <string name="details_rating">Rating</string>
+    <string name="details_description">Description</string>
+
+    <string name="error_no_connection">No internet connection. Check your connection and try again.</string>
+    <string name="error_not_found">We couldn\'t find this product.</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="retry">Retry</string>
+</resources>

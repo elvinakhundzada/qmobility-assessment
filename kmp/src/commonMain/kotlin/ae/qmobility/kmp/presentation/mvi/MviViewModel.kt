@@ -1,0 +1,33 @@
+package ae.qmobility.kmp.presentation.mvi
+
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+
+abstract class MviViewModel<Intent, State, Transition, Effect>(
+    initialState: State,
+    private val reducer: Reducer<State, Transition>,
+) : ViewModel() {
+    private val _state = MutableStateFlow(initialState)
+    val state: StateFlow<State> = _state.asStateFlow()
+
+    private val _effects = Channel<Effect>(Channel.BUFFERED)
+    val effects: Flow<Effect> = _effects.receiveAsFlow()
+
+    protected val currentState: State get() = _state.value
+
+    abstract fun onIntent(intent: Intent)
+
+    protected fun reduce(transition: Transition) {
+        _state.update { reducer.reduce(it, transition) }
+    }
+
+    protected fun emitEffect(effect: Effect) {
+        _effects.trySend(effect)
+    }
+}
